@@ -1,4 +1,9 @@
-import { Controller } from '@nestjs/common';
+import { Controller , Get} from '@nestjs/common';
 
 @Controller('login')
-export class LoginController {}
+export class LoginController {
+    @Get()
+    getLogin(){
+        return 'Hola esto es login';
+    }
+}
