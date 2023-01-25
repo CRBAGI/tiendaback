@@ -1,6 +1,6 @@
 import { Controller } from "@nestjs/common/decorators";
-import { BaseController } from "../common/controller.commons";
-import { BaseService } from "../common/service.commons";
+import { BaseController } from "../../common/controller.commons";
+import { BaseService } from "../../common/service.commons";
 import { usuario } from "../usuario.entity";
 import { usuarioService } from "../services/usuario.service";
 
