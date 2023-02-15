@@ -18,10 +18,8 @@ export class usuario{
     @Column()
     sexo : string;
 
-    @Column()
-    fechaDeNacimiento: Date;
+   
 
-    
     @PrimaryGeneratedColumn()
     IDUsario: number;
 

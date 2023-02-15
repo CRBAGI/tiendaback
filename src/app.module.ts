@@ -9,6 +9,7 @@ import { CarritoModule } from './Modules/carrito/carrito.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { usuarioModule } from './Modules/Login/login.module';
 import { DB_DATABASE, DB_HOST, DB_PASSWORD, DB_PORT, DB_USER } from './Modules/confing/constans';
+import { usuario } from './Modules/Login/entitys/usuario.entity';
 
 
 @Module({
@@ -26,12 +27,13 @@ import { DB_DATABASE, DB_HOST, DB_PASSWORD, DB_PORT, DB_USER } from './Modules/c
         username: configService.get<string>(DB_USER),
         password: configService.get<string>(DB_PASSWORD),
         database: configService.get<string>(DB_DATABASE),
-        entities: [__dirname + '/**/*.entity{.ts,.js}'],
-        synchronize: true,
+        //entities: [__dirname + '/**/*.entity{.ts}'],
+        entities: [usuario,],
+        synchronize: false,
       }),
       inject: [ConfigService],
 /*    }),
-
+/* 
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -40,8 +42,8 @@ import { DB_DATABASE, DB_HOST, DB_PASSWORD, DB_PORT, DB_USER } from './Modules/c
       password: '',
       database: 'tienda',
       autoLoadEntities: true,
-      
-    }),*/
+   */   
+    }),
     ProductoModule, 
     LandingModule, 
     CarritoModule, 
