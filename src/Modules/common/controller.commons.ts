@@ -1,5 +1,7 @@
 import {Body, Controller , Get, Post, HttpStatus, HttpCode, Param, UseGuards} from '@nestjs/common';
 import { BaseService } from './service.commons';
+import { usuario } from '../Login/entitys/usuario.entity';
+
 
 export abstract class BaseController<T>{
 
@@ -20,6 +22,9 @@ export abstract class BaseController<T>{
     async save(@Body() entity : T) : Promise<T> {
         return await this.getService().save(entity);
     }
+
+    
+
     @Post('save/many')
     @HttpCode(HttpStatus.CREATED)
      async saveMany(@Body() entities : T[] ) : Promise <T[]> {

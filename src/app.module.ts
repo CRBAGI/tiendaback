@@ -1,11 +1,11 @@
 import { ProductoModule } from './Modules/producto/producto.module';
+import { ValidationPipe } from '@nestjs/common';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AppService } from './app.service';
 import { LandingModule } from './Modules/landing/landing.module';
 import { CarritoModule } from './Modules/carrito/carrito.module';
-
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { usuarioModule } from './Modules/Login/login.module';
 import { DB_DATABASE, DB_HOST, DB_PASSWORD, DB_PORT, DB_USER } from './Modules/confing/constans';
@@ -50,6 +50,6 @@ import { usuario } from './Modules/Login/entitys/usuario.entity';
     usuarioModule,
     ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService,ValidationPipe],
 })
 export class AppModule { }

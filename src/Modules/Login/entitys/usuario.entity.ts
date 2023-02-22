@@ -1,4 +1,5 @@
-import { Column, Entity,PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity,PrimaryGeneratedColumn, Unique } from "typeorm";
+
 
 @Entity()
 export class usuario{
@@ -6,7 +7,7 @@ export class usuario{
     @Column()
     nombre: string;
 
-    @Column()
+    @Column(Unique)
     correo : string;
 
     @Column()
@@ -18,7 +19,11 @@ export class usuario{
     @Column()
     sexo : string;
 
-   
+    @Column()
+    FechaDeNacimiento: Date;
+
+    @Column()
+    fotoDePerfil : string;
 
     @PrimaryGeneratedColumn()
     IDUsario: number;

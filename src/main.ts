@@ -7,6 +7,12 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService =app.get(ConfigService);
 
+  //Apartado De Angular
+  app.enableCors({
+    origin: 'http://localhost:4200',
+  });
+  //
+
   //server port
   const port= +configService.get<number>(SERVER_PORT);
   await app.listen(port);
