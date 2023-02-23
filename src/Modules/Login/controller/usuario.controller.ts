@@ -5,25 +5,16 @@ import { usuarioService } from "../services/usuario.service";
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { Controller, Post, Body } from '@nestjs/common';
+import { RegistroDto } from "../dto/registro.dto";
 
 
 
 @Controller('usuario')
-export  class usuarioController extends BaseController<usuario> {
-constructor(private readonly usuarioService:usuarioService,){
-    super();
-}
-    
-    
-    @Post('Users')
-    async create(@Body() usuario: usuario) : Promise<usuario> {
-    const createdData = await this.getService().save(usuario);
-    return createdData;
-    }
-    getService(): BaseService<usuario> {
-        return this.usuarioService;
-    }
-  
-   
+export class usuarioController {
+    constructor(private usuarioService: usuarioService) { }
 
+    @Post('/registro')
+    registro(@Body() RegistroDto: RegistroDto): Promise<void> {
+        return this.usuarioService.RegistroUsuario(RegistroDto);
+    }
 }

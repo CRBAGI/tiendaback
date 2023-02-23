@@ -1,18 +1,20 @@
-import {Repository } from "typeorm";
-import { InjectRepository } from '@nestjs/typeorm';
+import { EntityRepository, Repository } from "typeorm";
 import { usuario } from "../entitys/usuario.entity";
-import { RegistroUsuarioDto } from "../dto/usuario-registro.dto";
+import { RegistroDto } from "../dto/registro.dto";
 
 
-
-
-export class usuarioRepository {
-constructor(@InjectRepository(usuario) private usuarioRepo : Repository <usuario>){
-        }
-
-       
-
+@EntityRepository(usuario)
+export class usuarioRepository extends Repository<usuario> {
+       async createUsuario(RegistroUsuarioDto: RegistroDto): Promise<void>{
+        const{nombre, email, password, rol, sexo, fechaDeNacimiento, fotoDePerfil}=RegistroUsuarioDto;
+        const usuario= this.create({nombre, email, password, rol, sexo, fechaDeNacimiento, fotoDePerfil});
+await this.save(usuario);
+       }
 }
+
+
+
+
 
 
 

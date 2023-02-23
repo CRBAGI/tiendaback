@@ -2,18 +2,20 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { BaseService } from '../../common/service.commons';
+import { RegistroDto } from '../dto/registro.dto';
 import { usuario } from '../entitys/usuario.entity';
+import { usuarioRepository } from '../repository/usuario.repository';
 
 
 @Injectable()
-export class usuarioService extends BaseService<usuario> {
-    constructor(@InjectRepository(usuario) private usuarioRepo : Repository <usuario>){
-        super()
-
-    }
-    getRepository(): Repository<usuario> {
-        return this.usuarioRepo;
-    }
+export class usuarioService {
+    constructor
+        (@InjectRepository(usuarioRepository)
+        private usuarioRepository: usuarioRepository,
+        ) {}
+        async RegistroUsuario(RegistroUsuarioDto: RegistroDto): Promise<void>{
+            return this.usuarioRepository.createUsuario(RegistroUsuarioDto);
+        }
 
 
 }
